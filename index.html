@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Poker</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <div class='container-fluid'>
+      <div class='row'>
+  {{outlet}}
+</div>
+  </div>
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <div class='col-md-2'>
+    <div class='row'>
+        <img src='img/pokerlogo.gif' class='img-responsive hidden-sm'>
+      </div>
+    <div class='row'>
+      <h3 class="text-center">Apuesta Total<h3>
+        <h1 class="text-center largetext">{{currentBet}}</h1>
+        <hr>
+        <button {{action 'undo'}}>Undo</button>
+      </div>
+    </div>
+      <div class='col-md-10'>
+    {{#each player in model}}
+    <div class='row'>{{player-dashboard model=player}}</div>
+    {{/each}}
+  </div>
+  </script>
+
+  <script type="text/x-handlebars" id="components/player-dashboard">
+    <div class='container-fluid'>
+      <div class='col-sm-2'>
+    <a class="btn medtext" {{action 'win'}}>{{model.name}}</a>
+  </div>
+    <div class='col-sm-1'>
+  <span class='text-danger medtext text-left'>{{model.bet}}</span>
+</div>
+  <div class='col-sm-9'>
+    <button class='btn-lg'{{action 'check'}}>Check</button>
+    <a {{action 'bet1'}}><img src='img/blue_chip2.jpg'></a>
+    <a {{action 'bet5'}}><img src='img/red_chip2.jpg'></a>
+      <a {{action 'bet10'}}><img src='img/green_chip2.jpg'></a>
+        <a {{action 'bet50'}}><img src='img/brown_chip2.jpg'></a>
+          <a {{action 'bet100'}}><img src='img/gray_chip2.jpg'></a>
+          <button class='btn-lg btn-warning'{{action 'allin'}}>All-in</button>
+    <strong class='smalltext'>{{model.money}}</span>
+    </div>
+</div>
+  </script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-v2.0.0.js"></script>
+  <script src="js/libs/ember-1.9.1.js"></script>
+  <script src="js/app.js"></script>
+
+  <script src="js/libs/bootstrap.min.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+</body>
+</html>
